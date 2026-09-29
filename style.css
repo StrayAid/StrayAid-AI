@@ -356,6 +356,10 @@ button { cursor: pointer; }
   object-position: center 20%;
 }
 
+.team-photo-shubham {
+  object-position: center calc(0% - 1cm);
+}
+
 .team-role {
   color: var(--coral);
   font-size: 0.75rem;
