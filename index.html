@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StrayAid AI | Fast help for animals in distress</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <div class="nav-logo"><span class="logo-mark">+</span> StrayAid <span>AI</span></div>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#analyze">Analyze</a>
+      <a href="#get-help">Get Help</a>
+      <a href="#about-team">Team</a>
+    </nav>
+  </header>
+
+  <!-- ===== HOME SECTION ===== -->
+  <section id="home" class="section hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Community-powered animal care</p>
+      <h1>One photo can start a rescue.</h1>
+      <p class="subtitle">
+        Upload a clear photo. StrayAid AI checks for visible signs of distress,
+        finds the closest rescue partner, and prepares an alert you can send.
+      </p>
+      <a href="#analyze" class="btn-primary">Start an assessment <span>↗</span></a>
+    </div>
+    <div class="hero-stat-panel" aria-label="StrayAid AI overview">
+      <div class="pulse-ring"><span>🐾</span></div>
+      <p class="panel-label">RESPONSE WINDOW</p>
+      <strong>Fast, local, human-led</strong>
+      <p>AI helps you notice. Rescue teams decide what happens next.</p>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section id="about" class="section">
+    <div class="about-intro split-section">
+    <div>
+      <p class="eyebrow">The problem we address</p>
+      <h2>When help is hard to find.</h2>
+    </div>
+    <p>
+      When an animal is hurt, the hardest part is often knowing what to do
+      first. StrayAid AI gives you a quick, visual first-look assessment and
+      connects that moment to a nearby rescue organization.
+    </p>
+    </div>
+
+    <div class="about-process">
+    <p class="eyebrow">A simple handoff</p>
+    <h2>From concern to coordinates.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Upload</h3>
+        <p>Choose or drop a clear animal photo.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Assess</h3>
+        <p>Get a visible-condition first look.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Locate</h3>
+        <p>Use your location to find the nearest partner.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <h3>Alert</h3>
+        <p>Prepare a rescue handoff with the animal's location.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">5</div>
+        <h3>Respond</h3>
+        <p>A human rescue team takes it from there.</p>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ===== ANALYZE SECTION ===== -->
+  <section id="analyze" class="section">
+    <div class="section-heading-row">
+      <div>
+        <p class="eyebrow">01 / Assessment desk</p>
+        <h2>What do you see?</h2>
+        <p>Upload a photo to begin an AI-assisted visual screening. This is a first look, not a diagnosis.</p>
+      </div>
+      <span class="live-badge"><i></i> MODEL LINKED</span>
+    </div>
+
+    <!-- Drag-and-drop / click upload box -->
+    <div id="drop-zone" class="drop-zone">
+      <div class="upload-icon">↑</div>
+      <strong>Drop an animal photo here</strong>
+      <p>or click to browse your device</p>
+      <small>JPG, PNG or WEBP · Max 10 MB</small>
+      <input type="file" id="file-input" accept="image/*" hidden>
+    </div>
+
+    <!-- Image preview (hidden until an image is chosen) -->
+    <div id="preview-container" class="preview-container hidden">
+      <div class="preview-image-wrap">
+        <img id="image-preview" src="" alt="Uploaded animal preview">
+        <span class="preview-tag">PHOTO READY</span>
+      </div>
+      <div class="preview-actions">
+        <button id="analyze-btn" class="btn-primary">Run assessment <span>→</span></button>
+        <button id="change-photo-btn" class="text-button" type="button">Change photo</button>
+      </div>
+    </div>
+
+    <!-- Result card (hidden until analysis is done) -->
+    <div id="result-card" class="result-card hidden">
+      <div class="result-topline"><span id="result-status-badge" class="status-badge"></span><span id="result-confidence"></span></div>
+      <h3 id="result-condition"></h3>
+      <p id="result-explanation"></p>
+      <p id="result-recommendation" class="recommendation"></p>
+      <a href="#get-help" class="btn-secondary result-help-link">What to do next</a>
+      <div id="review-actions" class="review-actions">
+        <p>Does this match what you see?</p>
+        <div>
+          <button id="confirm-injured-btn" class="review-btn urgent" type="button">Yes, report injury</button>
+          <button id="confirm-healthy-btn" class="review-btn" type="button">Looks healthy</button>
+        </div>
+      </div>
+      <div id="rescue-alert" class="rescue-alert hidden">
+        <div><span class="alert-icon">!</span><div><strong>Rescue handoff recommended</strong><p id="nearest-rescue-text"></p></div></div>
+        <button id="send-alert-btn" class="btn-alert" type="button">Send alert to nearest NGO <span>→</span></button>
+        <p id="alert-status" class="alert-status" role="status"></p>
+      </div>
+      <button id="analyze-another-btn" class="btn-secondary">Analyze Another Image</button>
+    </div>
+
+    <p class="disclaimer">This is an educational visual screening, not a veterinary diagnosis. Never approach an injured animal if it may be unsafe.</p>
+  </section>
+
+  <!-- ===== GET HELP SECTION ===== -->
+  <section id="get-help" class="section">
+    <div class="section-heading-row">
+      <div>
+        <p class="eyebrow">02 / Rescue network</p>
+        <h2>Put help within reach.</h2>
+        <p>Follow safe next steps and find local support. Demo partners below are fictional, not live contacts.</p>
+      </div>
+      <button id="locate-btn" class="btn-secondary">⌖ Use my location</button>
+    </div>
+    <div class="help-guidance">
+      <article>
+        <p class="eyebrow">After analysis</p>
+        <h3>Make a safe handoff.</h3>
+        <ol>
+          <li>Observe from a safe distance and note the animal's exact location.</li>
+          <li>Contact a trusted local animal NGO, veterinarian, or animal-control service.</li>
+          <li>Share a clear photo and describe what you observed. Let a trained responder guide next steps.</li>
+        </ol>
+      </article>
+      <article class="emergency-guidance">
+        <p class="eyebrow">Emergency guidance</p>
+        <h3>Keep yourself and the animal safe.</h3>
+        <p>If the animal is bleeding heavily, struggling to breathe, unconscious, or in immediate danger, contact your local emergency veterinarian or animal rescue service now. Do not approach, move, feed, or medicate an injured animal unless a professional tells you to.</p>
+      </article>
+    </div>
+    <p id="location-status"></p>
+    <p class="demo-note">All listed partners and prepared alerts are fictional school-project data. No real messages are sent.</p>
+
+    <!-- Rescue center cards get filled in by script.js -->
+    <div id="rescue-list" class="rescue-list"></div>
+  </section>
+
+  <!-- ===== ABOUT / TEAM SECTION ===== -->
+  <section id="about-team" class="section about-team">
+    <p class="eyebrow">The people and purpose behind the project</p>
+    <h2>Our Team</h2>
+    <h3>About StrayAid AI</h3>
+
+    <div class="about-team-overview">
+      <article>
+        <h3>The problem</h3>
+        <p>People who find an animal in distress may not know how to assess the situation or quickly find nearby help.</p>
+      </article>
+      <article>
+        <h3>Our solution</h3>
+        <p>StrayAid AI combines image classification with location and rescue information to support a quicker, informed handoff.</p>
+      </article>
+      <article>
+        <h3>Our aim</h3>
+        <p>We aim to help communities identify possible animal health concerns and connect with local rescue support.</p>
+      </article>
+    </div>
+
+    <div class="about-team-technology">
+      <h2>Technology Used</h2>
+      <ul>
+        <li>HTML, CSS, and JavaScript</li>
+        <li>Google Teachable Machine</li>
+        <li>AI/ML image classification</li>
+        <li>Location and maps features</li>
+      </ul>
+    </div>
+
+    <div class="team-members">
+      <h2>Meet the Team</h2>
+      <div class="team-grid">
+        <article class="team-card team-leader" tabindex="0">
+          <div class="team-photo-placeholder" role="img" aria-label="Photo of Shaksham can be added later">Photo to be added</div>
+          <h3>Shaksham</h3>
+          <p class="team-role">Documentation &amp; Reporting (Leader)</p>
+          <p>Maintains project documentation, coordinates team tasks, follows up on work, and tracks progress.</p>
+        </article>
+
+        <article class="team-card" tabindex="0">
+          <img class="team-photo team-photo-arpita" src="ARPITA.jpeg" alt="Arpita, Coder">
+          <h3>Arpita</h3>
+          <p class="team-role">Coder</p>
+          <p>Builds and organizes the website, manages its code, and implements AI features.</p>
+        </article>
+
+        <article class="team-card" tabindex="0">
+          <img class="team-photo team-photo-sidharth" src="SIDHARTH.jpeg" alt="Sidharth, Data Collector">
+          <h3>Sidharth</h3>
+          <p class="team-role">Data Collector</p>
+          <p>Collects and prepares images and other data for training and demonstrating the AI model.</p>
+        </article>
+
+        <article class="team-card" tabindex="0">
+          <img class="team-photo team-photo-shubham" src="SHUBHAM.jpeg" alt="Shubham picture upload">
+          <h3>Shubham</h3>
+          <p class="team-role">Tester</p>
+          <p>Tests website features, checks that they work correctly, and reports issues that need fixing.</p>
+        </article>
+
+        <article class="team-card" tabindex="0">
+          <img class="team-photo team-photo-yash" src="YASH.jpeg" alt="Yash, Video Editor">
+          <h3>Yash</h3>
+          <p class="team-role">Video Editor</p>
+          <p>Edits project videos to make the final presentation clear, engaging, and well structured.</p>
+        </article>
+      </div>
+    </div>
+    <div class="feedback-section">
+      <p class="eyebrow">Feedback</p>
+      <h2>We’d love to hear your thoughts!</h2>
+      <p>Your feedback helps us improve StrayAid and make the project more useful.</p>
+      <a class="btn-primary" href="mailto:strayaidai@gmail.com?subject=Feedback%20for%20StrayAid">Give Feedback <span>↗</span></a>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <p class="footer-thanks">Thank you for visiting StrayAid.</p>
+    <p class="footer-motto">Together, we can turn concern into care.</p>
+    <p>StrayAid AI · School project demonstration · Not a veterinary diagnosis tool</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+  <script src="rescueData.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
