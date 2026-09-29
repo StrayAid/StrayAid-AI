@@ -265,6 +265,11 @@ sendAlertBtn.addEventListener("click", () => {
   sendAlertBtn.disabled = true;
 });
 
+const feedbackStatus = document.getElementById("feedback-status");
+if (feedbackStatus && new URLSearchParams(window.location.search).get("feedback") === "sent") {
+  feedbackStatus.textContent = "Thank you. Your feedback was submitted. First-time setup may require confirming FormSubmit in the StrayAid inbox.";
+}
+
 (() => {
   const pageSections = [...document.querySelectorAll("body > .section")];
 

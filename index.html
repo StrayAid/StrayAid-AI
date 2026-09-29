@@ -14,10 +14,9 @@
     <nav class="nav-links">
       <a href="#home">Home</a>
       <a href="#about">About</a>
-      <a href="#how-it-works">How It Works</a>
       <a href="#analyze">Analyze</a>
       <a href="#get-help">Get Help</a>
-      <a href="#about-team">About Team</a>
+      <a href="#about-team">Team</a>
     </nav>
   </header>
 
@@ -41,20 +40,20 @@
   </section>
 
   <!-- ===== ABOUT SECTION ===== -->
-  <section id="about" class="section split-section">
+  <section id="about" class="section">
+    <div class="about-intro split-section">
     <div>
-      <p class="eyebrow">Why it matters</p>
-      <h2>Make the first call count.</h2>
+      <p class="eyebrow">The problem we address</p>
+      <h2>When help is hard to find.</h2>
     </div>
     <p>
       When an animal is hurt, the hardest part is often knowing what to do
       first. StrayAid AI gives you a quick, visual first-look assessment and
       connects that moment to a nearby rescue organization.
     </p>
-  </section>
+    </div>
 
-  <!-- ===== HOW IT WORKS SECTION ===== -->
-  <section id="how-it-works" class="section">
+    <div class="about-process">
     <p class="eyebrow">A simple handoff</p>
     <h2>From concern to coordinates.</h2>
     <div class="steps">
@@ -84,6 +83,7 @@
         <p>A human rescue team takes it from there.</p>
       </div>
     </div>
+    </div>
   </section>
 
   <!-- ===== ANALYZE SECTION ===== -->
@@ -92,7 +92,7 @@
       <div>
         <p class="eyebrow">01 / Assessment desk</p>
         <h2>What do you see?</h2>
-        <p>Upload a photo to begin a first-look health assessment.</p>
+        <p>Upload a photo to begin an AI-assisted visual screening. This is a first look, not a diagnosis.</p>
       </div>
       <span class="live-badge"><i></i> MODEL LINKED</span>
     </div>
@@ -124,6 +124,7 @@
       <h3 id="result-condition"></h3>
       <p id="result-explanation"></p>
       <p id="result-recommendation" class="recommendation"></p>
+      <a href="#get-help" class="btn-secondary result-help-link">What to do next</a>
       <div id="review-actions" class="review-actions">
         <p>Does this match what you see?</p>
         <div>
@@ -148,12 +149,28 @@
       <div>
         <p class="eyebrow">02 / Rescue network</p>
         <h2>Put help within reach.</h2>
-        <p>Share a demo location to sort fictional rescue partners.</p>
+        <p>Follow safe next steps and find local support. Demo partners below are fictional, not live contacts.</p>
       </div>
       <button id="locate-btn" class="btn-secondary">⌖ Use my location</button>
     </div>
+    <div class="help-guidance">
+      <article>
+        <p class="eyebrow">After analysis</p>
+        <h3>Make a safe handoff.</h3>
+        <ol>
+          <li>Observe from a safe distance and note the animal's exact location.</li>
+          <li>Contact a trusted local animal NGO, veterinarian, or animal-control service.</li>
+          <li>Share a clear photo and describe what you observed. Let a trained responder guide next steps.</li>
+        </ol>
+      </article>
+      <article class="emergency-guidance">
+        <p class="eyebrow">Emergency guidance</p>
+        <h3>Keep yourself and the animal safe.</h3>
+        <p>If the animal is bleeding heavily, struggling to breathe, unconscious, or in immediate danger, contact your local emergency veterinarian or animal rescue service now. Do not approach, move, feed, or medicate an injured animal unless a professional tells you to.</p>
+      </article>
+    </div>
     <p id="location-status"></p>
-    <p class="demo-note">All partners and alerts shown here are fictional school-project data.</p>
+    <p class="demo-note">All listed partners and prepared alerts are fictional school-project data. No real messages are sent.</p>
 
     <!-- Rescue center cards get filled in by script.js -->
     <div id="rescue-list" class="rescue-list"></div>
@@ -162,7 +179,7 @@
   <!-- ===== ABOUT / TEAM SECTION ===== -->
   <section id="about-team" class="section about-team">
     <p class="eyebrow">The people and purpose behind the project</p>
-    <h2>About Team</h2>
+    <h2>Our Team</h2>
     <h3>About StrayAid AI</h3>
 
     <div class="about-team-overview">
@@ -196,8 +213,7 @@
         <article class="team-card team-leader" tabindex="0">
           <div class="team-photo-placeholder" role="img" aria-label="Photo of Shaksham can be added later">Photo to be added</div>
           <h3>Shaksham</h3>
-          <p class="team-role">Documentation &amp; Reporting</p>
-          <p class="team-leader-title">Team Leader</p>
+          <p class="team-role">Documentation &amp; Reporting (Leader)</p>
           <p>Maintains project documentation, coordinates team tasks, follows up on work, and tracks progress.</p>
         </article>
 
@@ -230,10 +246,29 @@
         </article>
       </div>
     </div>
+
+    <div class="feedback-section">
+      <p class="eyebrow">Feedback</p>
+      <h2>We’d love to hear your thoughts!</h2>
+      <p>Your feedback helps us improve StrayAid and make the project more useful.</p>
+      <form id="feedback-form" class="feedback-form" action="https://formsubmit.co/strayaidai@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="StrayAid website feedback">
+        <input type="hidden" name="_next" value="https://unhingedmess.github.io/StrayAid-AI/?feedback=sent#about-team">
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" hidden>
+        <label for="feedback-email">Email (optional)</label>
+        <input id="feedback-email" type="email" name="email" autocomplete="email">
+        <label for="feedback-message">Your feedback</label>
+        <textarea id="feedback-message" name="message" rows="4" maxlength="2000" required></textarea>
+        <button class="btn-primary" type="submit">Give Feedback <span>↗</span></button>
+        <p id="feedback-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </section>
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
+    <p class="footer-thanks">Thank you for visiting StrayAid.</p>
+    <p class="footer-motto">Together, we can turn concern into care.</p>
     <p>StrayAid AI · School project demonstration · Not a veterinary diagnosis tool</p>
   </footer>
 
